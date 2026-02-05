@@ -1,11 +1,11 @@
 import QuestionData from "../data/QuestionData";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const Quiz = () => {
     //console.log(QuestionData);
     const [current,setCursor] = useState(0);
     const [selectChoice,setSelectChoice] = useState("");
-
+    const [score,setScore,setAppState] = useContext(DataContext);
     useEffect(()=>{
         checkAnswer()
     },[selectChoice])
@@ -13,12 +13,22 @@ const Quiz = () => {
     const checkAnswer = () => {
         if(selectChoice !== ""){
             if(selectChoice === QuestionData[current].answer){
-                console.log("ตอบถูกและได้คะแนน");
+                setScore(score + 1);
+                nextQuestion();
             }else{
-                console.log("ตอบผิดไม่ได้คะแนน T+T");
+                //console.log("ตอบผิดไม่ได้คะแนน T+T");
+                nextQuestion();
         }
     }
-}
+    }
+    const nextQuestion = () => {
+        setSelectChoice("");
+        if(current===QuestionData.length -1){
+            setAppState("score");
+        }else{
+            setCurrent(current + 1);
+        }
+    }
 
     return(
         <div className="quiz" >

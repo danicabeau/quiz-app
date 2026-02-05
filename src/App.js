@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import Quiz from './component/Quiz';
 import Score from './component/Score';

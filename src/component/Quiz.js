@@ -1,11 +1,12 @@
 import QuestionData from "../data/QuestionData";
 import { useContext, useEffect, useState } from "react";
+import { DataContext } from "../App";
 
 const Quiz = () => {
     //console.log(QuestionData);
-    const [current,setCursor] = useState(0);
+    const [current,setCurrent] = useState(0);
     const [selectChoice,setSelectChoice] = useState("");
-    const [score,setScore,setAppState] = useContext(DataContext);
+    const { score, setScore, setAppState, appState } = useContext(DataContext); 
     useEffect(()=>{
         checkAnswer()
     },[selectChoice])
@@ -39,7 +40,7 @@ const Quiz = () => {
                 <button onClick={()=>setSelectChoice("C")}>{QuestionData[current].C}</button>
                 <button onClick={()=>setSelectChoice("D")}>{QuestionData[current].D}</button>
             </div>
-            <p>{'{current+1} / {QuestionData.length}'}</p>
+            <p>{current + 1} / {QuestionData.length}</p>
         </div>
         
     )

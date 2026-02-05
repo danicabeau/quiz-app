@@ -18,6 +18,7 @@ const Quiz = () => {
                 console.log("ตอบผิดไม่ได้คะแนน T+T");
         }
     }
+}
 
     return(
         <div className="quiz" >
